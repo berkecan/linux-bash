@@ -38,7 +38,7 @@ ftp_proxy =  http://$kadi:$sifre@$ip:$port/" >> /home/$USER/.wgetrc
 
 echo "curl proxy setting"
 
-sudo echo "proxy = http://$kadi:$sifre@20.0.1.5:8080/" >> /home/$USER/.curlrc
+sudo echo "proxy = http://$kadi:$sifre@$ip:$port/" >> /home/$USER/.curlrc
 
 #Maven
 
