@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo 'Java8 installing'
+
+sudo -E add-apt-repository ppa:webupd8team/java
+
+sudo apt-get update
+
+sudo apt-get install oracle-java8-installer 
+
+echo 'git installing'
+
+sudo apt-get install git
+
+echo 'Mysql installing'
+
+sudo apt install mysql-client mysql-server mysql-workbench
+
+echo 'maven installing'
+
+sudo apt install maven
+
+echo 'nodejs installing'
+
+sudo apt-get install nodejs
+
+echo 'npm installing'
+
+sudo apt-get install npm
+
+echo 'Atom installing'
+
+sudo -E add-apt-repository ppa:webupd8team/atom
+
+sudo apt update
+
+sudo apt install atom

@@ -1,0 +1,63 @@
+#!/bin/bash
+
+echo "Kullanıcı adini giriniz [ENTER]:"
+
+read kadi
+
+echo "Sifre giriniz [ENTER]:"
+
+read -s sifre
+
+echo "host giriniz [ENTER]:"
+
+read ip
+
+echo "port giriniz [ENTER]:"
+
+read port
+
+export http_proxy='http://$kadi:$sifre@$ip:$port/'
+export https_proxy='https://$kadi:$sifre@$ip:$port/'
+
+#Terminal
+
+echo "terminal proxy setting"
+
+sudo echo "Acquire::http::proxy \"http://$kadi:$sifre@$ip:$port/\";" >> /etc/apt/apt.conf
+
+#Wget
+
+echo "wget proxy setting"
+
+sudo echo "use_proxy = on
+http_proxy =  http://$kadi:$sifre@$ip:$port/
+https_proxy =  http://$kadi:$sifre@$ip:$port/
+ftp_proxy =  http://$kadi:$sifre@$ip:$port/" >> /home/$USER/.wgetrc
+
+#Curl
+
+echo "curl proxy setting"
+
+sudo echo "proxy = http://$kadi:$sifre@20.0.1.5:8080/" >> /home/$USER/.curlrc
+
+#Maven
+
+echo "maven proxy setting"
+
+sudo echo "<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                  http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<proxies>
+		<proxy>
+			<id>example-proxy</id>
+			<active>true</active>
+			<protocol>http</protocol>
+			<host>$ip</host>
+			<port>$port</port>
+			<username>$kadi</username>
+			<password>$sifre</password>
+			<nonProxyHosts></nonProxyHosts>
+		</proxy>
+	</proxies>
+</settings>" >> /home/$USER/.m2/settings.xml
