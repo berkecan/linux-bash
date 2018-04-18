@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#NodeJS
+
+echo "nodejs installing"
+
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
+sudo apt-get install -y nodejs
+
+#Yarn
+
+echo "yarn installing"
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update && sudo apt-get install yarn
+
+export PATH="$PATH:$(yarn global bin):$HOME/.config/yarn/global/node_modules/.bin"
+
+#Bower
+
+echo "bower installing"
+
+yarn global add bower
+
+#Gulp
+
+echo "gulp installing"
+
+yarn global add gulp-cli
+
+#Yeoman
+
+echo "yeoman installing"
+
+yarn global add yo
+
+#Jhipster
+
+echo "Jhipster installing"
+
+yarn global add generator-jhipster
